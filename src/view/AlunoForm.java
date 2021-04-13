@@ -87,6 +87,25 @@ public class AlunoForm extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         alunoTable = new javax.swing.JTable();
+        jPanel3 = new javax.swing.JPanel();
+        jPanel4 = new javax.swing.JPanel();
+        nomeProfessor = new javax.swing.JTextField();
+        jLabel11 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
+        idadeProfessor = new javax.swing.JTextField();
+        rgProfessor = new javax.swing.JTextField();
+        jLabel13 = new javax.swing.JLabel();
+        jLabel14 = new javax.swing.JLabel();
+        cpfProfessor = new javax.swing.JTextField();
+        jLabel15 = new javax.swing.JLabel();
+        sexoProfessor = new javax.swing.JTextField();
+        criarProfessor = new javax.swing.JButton();
+        jLabel16 = new javax.swing.JLabel();
+        nascimentoProfessor = new javax.swing.JTextField();
+        jLabel17 = new javax.swing.JLabel();
+        instituicaoProfessor = new javax.swing.JTextField();
+        jLabel18 = new javax.swing.JLabel();
+        anoConclusaoProfessor = new javax.swing.JTextField();
 
         jPasswordField1.setText("jPasswordField1");
 
@@ -307,6 +326,171 @@ public class AlunoForm extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Ver alunos", jPanel2);
 
+        jPanel4.setBackground(new java.awt.Color(255, 255, 255));
+
+        nomeProfessor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nomeProfessorActionPerformed(evt);
+            }
+        });
+
+        jLabel11.setText("Nome");
+
+        jLabel12.setText("Idade");
+
+        idadeProfessor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                idadeProfessorActionPerformed(evt);
+            }
+        });
+
+        rgProfessor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rgProfessorActionPerformed(evt);
+            }
+        });
+
+        jLabel13.setText("RG");
+
+        jLabel14.setText("CPF");
+
+        cpfProfessor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cpfProfessorActionPerformed(evt);
+            }
+        });
+
+        jLabel15.setText("Sexo");
+
+        sexoProfessor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sexoProfessorActionPerformed(evt);
+            }
+        });
+
+        criarProfessor.setText("Salvar");
+        criarProfessor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                criarProfessorActionPerformed(evt);
+            }
+        });
+
+        jLabel16.setText("Mês de nascimento");
+
+        nascimentoProfessor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nascimentoProfessorActionPerformed(evt);
+            }
+        });
+
+        jLabel17.setText("Nome da faculdade");
+
+        instituicaoProfessor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                instituicaoProfessorActionPerformed(evt);
+            }
+        });
+
+        jLabel18.setText("Ano de conclusão");
+
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addContainerGap(119, Short.MAX_VALUE)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                        .addComponent(criarProfessor, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(23, 23, 23))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel14)
+                            .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel16)
+                                    .addComponent(nascimentoProfessor, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(jPanel4Layout.createSequentialGroup()
+                                    .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                            .addComponent(instituicaoProfessor, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
+                                            .addComponent(cpfProfessor, javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel11, javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(nomeProfessor, javax.swing.GroupLayout.Alignment.LEADING))
+                                        .addComponent(jLabel17))
+                                    .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(jPanel4Layout.createSequentialGroup()
+                                            .addGap(54, 54, 54)
+                                            .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                                .addComponent(idadeProfessor)
+                                                .addComponent(jLabel12)
+                                                .addComponent(jLabel15)
+                                                .addComponent(sexoProfessor, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addGap(79, 79, 79)
+                                            .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addComponent(jLabel13)
+                                                .addComponent(rgProfessor, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                        .addGroup(jPanel4Layout.createSequentialGroup()
+                                            .addGap(182, 182, 182)
+                                            .addComponent(jLabel18))
+                                        .addGroup(jPanel4Layout.createSequentialGroup()
+                                            .addGap(182, 182, 182)
+                                            .addComponent(anoConclusaoProfessor, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                        .addGap(233, 233, 233))))
+        );
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                .addGap(33, 33, 33)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel11)
+                    .addComponent(jLabel12)
+                    .addComponent(jLabel13))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(rgProfessor)
+                    .addComponent(nomeProfessor)
+                    .addComponent(idadeProfessor, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(jLabel14)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addComponent(jLabel15)
+                        .addGap(1, 1, 1)
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(sexoProfessor)
+                            .addComponent(cpfProfessor, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addComponent(jLabel16)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(nascimentoProfessor, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel17)
+                    .addComponent(jLabel18))
+                .addGap(16, 16, 16)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(instituicaoProfessor, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(anoConclusaoProfessor, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 103, Short.MAX_VALUE)
+                .addComponent(criarProfessor, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+
+        jTabbedPane1.addTab("Cadastrar professor", jPanel3);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -400,6 +584,38 @@ public class AlunoForm extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_alunoInteressesActionPerformed
 
+    private void instituicaoProfessorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_instituicaoProfessorActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_instituicaoProfessorActionPerformed
+
+    private void nascimentoProfessorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nascimentoProfessorActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_nascimentoProfessorActionPerformed
+
+    private void criarProfessorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_criarProfessorActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_criarProfessorActionPerformed
+
+    private void sexoProfessorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sexoProfessorActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_sexoProfessorActionPerformed
+
+    private void cpfProfessorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cpfProfessorActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cpfProfessorActionPerformed
+
+    private void rgProfessorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rgProfessorActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_rgProfessorActionPerformed
+
+    private void idadeProfessorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_idadeProfessorActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_idadeProfessorActionPerformed
+
+    private void nomeProfessorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nomeProfessorActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_nomeProfessorActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -442,9 +658,22 @@ public class AlunoForm extends javax.swing.JFrame {
     private javax.swing.JTextField alunoMesMatricula;
     private javax.swing.JTextField alunoNascimento;
     private javax.swing.JTable alunoTable;
+    private javax.swing.JTextField anoConclusaoProfessor;
+    private javax.swing.JTextField cpfProfessor;
+    private javax.swing.JButton criarProfessor;
+    private javax.swing.JTextField idadeProfessor;
+    private javax.swing.JTextField instituicaoProfessor;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -455,6 +684,8 @@ public class AlunoForm extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
     private javax.swing.JPasswordField jPasswordField1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTabbedPane jTabbedPane1;
@@ -463,5 +694,9 @@ public class AlunoForm extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
     private javax.swing.JTextField jTextField5;
+    private javax.swing.JTextField nascimentoProfessor;
+    private javax.swing.JTextField nomeProfessor;
+    private javax.swing.JTextField rgProfessor;
+    private javax.swing.JTextField sexoProfessor;
     // End of variables declaration//GEN-END:variables
 }
