@@ -10,7 +10,7 @@ package model;
  * @author joaov
  */
 public class Pessoa {
-    
+      
     private String nome;
     
     private String idade;
@@ -73,5 +73,6 @@ public class Pessoa {
         this.cpf = cpf;
     }
 }
+
 
 

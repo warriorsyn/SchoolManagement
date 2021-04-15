@@ -16,17 +16,14 @@ public class Aluno extends Pessoa {
     private String mesNascimento;
     
     private String interesses;
-    
-    private Matricula matricula;
 
     public Aluno() {
     }
 
-    public Aluno(long id, String mesNascimento, String interesses, Matricula matricula) {
+    public Aluno(long id, String mesNascimento, String interesses) {
         this.id = id;
         this.mesNascimento = mesNascimento;
         this.interesses = interesses;
-        this.matricula = matricula;
     }
 
     public long getId() {
@@ -51,13 +48,6 @@ public class Aluno extends Pessoa {
 
     public void setInteresses(String interesses) {
         this.interesses = interesses;
-    }
-
-    public Matricula getMatricula() {
-        return matricula;
-    }
-
-    public void setMatricula(Matricula matricula) {
-        this.matricula = matricula;
     }   
 }
+

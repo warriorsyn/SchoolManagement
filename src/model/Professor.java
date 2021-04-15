@@ -13,6 +13,7 @@ import java.util.List;
  */
 public class Professor extends Pessoa {
     
+    private long id;
     private String matricula;
     private Formacao formacao;
     private List<String> disciplinas;
@@ -57,6 +58,15 @@ public class Professor extends Pessoa {
     public void setDisciplinas(List<String> disciplinas) {
         this.disciplinas = disciplinas;
     }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
 }
+
 
 

@@ -16,14 +16,20 @@ public class Matricula {
     private byte mesMatricula;
 
     private short anoMatricula;
+    
+    private Aluno aluno;
+    
+    private Curso curso;
 
     public Matricula() {
     }
 
-    public Matricula(long codigo, byte mesMatricula, short anoMatricula) {
+    public Matricula(long codigo, byte mesMatricula, short anoMatricula, Aluno aluno, Curso curso) {
         this.codigo = codigo;
         this.mesMatricula = mesMatricula;
         this.anoMatricula = anoMatricula;
+        this.aluno = aluno;
+        this.curso = curso;
     }
 
     public long getCodigo() {
@@ -48,6 +54,22 @@ public class Matricula {
 
     public void setAnoMatricula(short anoMatricula) {
         this.anoMatricula = anoMatricula;
+    }
+
+    public Aluno getAluno() {
+        return aluno;
+    }
+
+    public void setAluno(Aluno aluno) {
+        this.aluno = aluno;
+    }
+
+    public Curso getCurso() {
+        return curso;
+    }
+
+    public void setCurso(Curso curso) {
+        this.curso = curso;
     }
 }
 

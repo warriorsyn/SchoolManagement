@@ -7,6 +7,7 @@ package view;
 
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.stream.Collectors;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import model.*;
@@ -19,7 +20,19 @@ public class AlunoForm extends javax.swing.JFrame {
 
     private ArrayList<Aluno> alunos = new ArrayList<Aluno>();
 
+    private ArrayList<Professor> professores = new ArrayList<Professor>();
+    
+    private ArrayList<Curso> cursos = new ArrayList<Curso>();
+    
+    private ArrayList<Matricula> matriculas = new ArrayList<Matricula>();
+    
     DefaultTableModel alunoModel;
+    
+    DefaultTableModel professorModel;
+    
+    DefaultTableModel cursoModel;
+    
+    DefaultTableModel matriculaModel;
 
     /**
      * Creates new form AlunoForm
@@ -42,13 +55,42 @@ public class AlunoForm extends javax.swing.JFrame {
 
         alunoModel.addColumn("CPF");
 
-        alunoModel.addColumn("Código matrícula");
-
         alunoModel.addColumn("Interesses");
 
-        alunoModel.addColumn("Mês matrícula");
-
-        alunoModel.addColumn("Ano matrícula");
+        
+        // Professor 
+        
+        professorModel = new DefaultTableModel();
+        professorTable.setModel(professorModel);
+        professorModel.addColumn("Id");
+        professorModel.addColumn("Nome");
+        professorModel.addColumn("Idade");
+        professorModel.addColumn("Rg");
+        professorModel.addColumn("CPF");
+        professorModel.addColumn("Matrícula");
+        professorModel.addColumn("Curso");
+        professorModel.addColumn("Instituição");
+        professorModel.addColumn("Ano conclusão");
+        
+        // Curso
+        
+        cursoModel = new DefaultTableModel();
+        cursoTable.setModel(cursoModel);
+        
+        cursoModel.addColumn("Id");
+        cursoModel.addColumn("Titulo");
+        cursoModel.addColumn("Descrição");
+        cursoModel.addColumn("Professor");
+        
+        // Matricula
+        
+        matriculaModel = new DefaultTableModel();
+        matriculaTable.setModel(matriculaModel);
+        matriculaModel.addColumn("Codigo");
+        matriculaModel.addColumn("Mês");
+        matriculaModel.addColumn("Ano");
+        matriculaModel.addColumn("Aluno");
+        matriculaModel.addColumn("Curso");
     }
 
     /**
@@ -61,6 +103,11 @@ public class AlunoForm extends javax.swing.JFrame {
     private void initComponents() {
 
         jPasswordField1 = new javax.swing.JPasswordField();
+        jPanel5 = new javax.swing.JPanel();
+        jPanel7 = new javax.swing.JPanel();
+        jPanel8 = new javax.swing.JPanel();
+        jTextField6 = new javax.swing.JTextField();
+        jComboBox1 = new javax.swing.JComboBox<>();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
         jTextField1 = new javax.swing.JTextField();
@@ -78,12 +125,6 @@ public class AlunoForm extends javax.swing.JFrame {
         alunoNascimento = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         alunoInteresses = new javax.swing.JTextField();
-        jLabel8 = new javax.swing.JLabel();
-        alunoCodigoMatricula = new javax.swing.JTextField();
-        jLabel9 = new javax.swing.JLabel();
-        alunoMesMatricula = new javax.swing.JTextField();
-        jLabel10 = new javax.swing.JLabel();
-        alunoAnoMatricula = new javax.swing.JTextField();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         alunoTable = new javax.swing.JTable();
@@ -101,13 +142,81 @@ public class AlunoForm extends javax.swing.JFrame {
         sexoProfessor = new javax.swing.JTextField();
         criarProfessor = new javax.swing.JButton();
         jLabel16 = new javax.swing.JLabel();
-        nascimentoProfessor = new javax.swing.JTextField();
+        matriculaProfessor = new javax.swing.JTextField();
         jLabel17 = new javax.swing.JLabel();
         instituicaoProfessor = new javax.swing.JTextField();
         jLabel18 = new javax.swing.JLabel();
         anoConclusaoProfessor = new javax.swing.JTextField();
+        jLabel19 = new javax.swing.JLabel();
+        cursoProfessor = new javax.swing.JTextField();
+        jPanel6 = new javax.swing.JPanel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        professorTable = new javax.swing.JTable();
+        jPanel9 = new javax.swing.JPanel();
+        jLabel20 = new javax.swing.JLabel();
+        tituloCurso = new javax.swing.JTextField();
+        jLabel21 = new javax.swing.JLabel();
+        descricaoCurso = new javax.swing.JTextField();
+        jLabel22 = new javax.swing.JLabel();
+        jLabel23 = new javax.swing.JLabel();
+        professorCurso = new javax.swing.JTextField();
+        salvarCurso = new javax.swing.JButton();
+        valorCurso = new javax.swing.JTextField();
+        jPanel10 = new javax.swing.JPanel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        cursoTable = new javax.swing.JTable();
+        jPanel11 = new javax.swing.JPanel();
+        jLabel24 = new javax.swing.JLabel();
+        alunoIdMatricula = new javax.swing.JTextField();
+        jLabel25 = new javax.swing.JLabel();
+        mesMatricula = new javax.swing.JTextField();
+        jLabel26 = new javax.swing.JLabel();
+        anoMatricula = new javax.swing.JTextField();
+        jLabel27 = new javax.swing.JLabel();
+        cursoIdMatricula = new javax.swing.JTextField();
+        salvarMatricula = new javax.swing.JButton();
+        jPanel12 = new javax.swing.JPanel();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        matriculaTable = new javax.swing.JTable();
 
         jPasswordField1.setText("jPasswordField1");
+
+        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
+        jPanel5.setLayout(jPanel5Layout);
+        jPanel5Layout.setHorizontalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
+        jPanel5Layout.setVerticalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
+
+        javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
+        jPanel7.setLayout(jPanel7Layout);
+        jPanel7Layout.setHorizontalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
+        jPanel7Layout.setVerticalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
+
+        javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
+        jPanel8.setLayout(jPanel8Layout);
+        jPanel8Layout.setHorizontalGroup(
+            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
+        jPanel8Layout.setVerticalGroup(
+            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
+
+        jTextField6.setText("jTextField6");
+
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -176,12 +285,6 @@ public class AlunoForm extends javax.swing.JFrame {
             }
         });
 
-        jLabel8.setText("Codigo matríula");
-
-        jLabel9.setText("Mês matrícula");
-
-        jLabel10.setText("Ano matrícula");
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -196,37 +299,27 @@ public class AlunoForm extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel4)
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel6)
-                                    .addComponent(alunoNascimento, javax.swing.GroupLayout.DEFAULT_SIZE, 122, Short.MAX_VALUE)
-                                    .addComponent(jLabel9)
-                                    .addComponent(alunoMesMatricula))
+                                    .addComponent(alunoNascimento, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGroup(jPanel1Layout.createSequentialGroup()
-                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                        .addComponent(alunoAnoMatricula)
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                                .addComponent(alunoInteresses, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
-                                                .addComponent(jTextField4, javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addComponent(jTextField1, javax.swing.GroupLayout.Alignment.LEADING))
-                                            .addComponent(jLabel7)
-                                            .addComponent(jLabel10)))
-                                    .addGap(54, 54, 54)
                                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(jPanel1Layout.createSequentialGroup()
-                                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                                .addComponent(jTextField2)
-                                                .addComponent(jLabel2)
-                                                .addComponent(jLabel5)
-                                                .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                            .addGap(79, 79, 79)
-                                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addComponent(jLabel3)
-                                                .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                            .addComponent(alunoCodigoMatricula, javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))))
+                                            .addComponent(alunoInteresses, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
+                                            .addComponent(jTextField4, javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jTextField1, javax.swing.GroupLayout.Alignment.LEADING))
+                                        .addComponent(jLabel7))
+                                    .addGap(54, 54, 54)
+                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(jTextField2)
+                                        .addComponent(jLabel2)
+                                        .addComponent(jLabel5)
+                                        .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGap(79, 79, 79)
+                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jLabel3)
+                                        .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                         .addGap(233, 233, 233))))
         );
         jPanel1Layout.setVerticalGroup(
@@ -257,20 +350,10 @@ public class AlunoForm extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(alunoNascimento, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel7)
-                    .addComponent(jLabel8)
-                    .addComponent(jLabel9))
+                .addComponent(jLabel7)
                 .addGap(16, 16, 16)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(alunoInteresses, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(alunoCodigoMatricula, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(alunoMesMatricula, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(jLabel10)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(alunoAnoMatricula, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
+                .addComponent(alunoInteresses, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 157, Short.MAX_VALUE)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -321,7 +404,7 @@ public class AlunoForm extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(108, 108, 108)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(198, Short.MAX_VALUE))
+                .addContainerGap(248, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Ver alunos", jPanel2);
@@ -375,11 +458,11 @@ public class AlunoForm extends javax.swing.JFrame {
             }
         });
 
-        jLabel16.setText("Mês de nascimento");
+        jLabel16.setText("Num matricula");
 
-        nascimentoProfessor.addActionListener(new java.awt.event.ActionListener() {
+        matriculaProfessor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                nascimentoProfessorActionPerformed(evt);
+                matriculaProfessorActionPerformed(evt);
             }
         });
 
@@ -393,6 +476,14 @@ public class AlunoForm extends javax.swing.JFrame {
 
         jLabel18.setText("Ano de conclusão");
 
+        jLabel19.setText("Nome curso");
+
+        cursoProfessor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cursoProfessorActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
@@ -400,43 +491,45 @@ public class AlunoForm extends javax.swing.JFrame {
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap(119, Short.MAX_VALUE)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                        .addComponent(criarProfessor, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(23, 23, 23))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                    .addComponent(jLabel14)
+                    .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel14)
-                            .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel16)
-                                    .addComponent(nascimentoProfessor, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel16)
+                            .addComponent(matriculaProfessor, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jPanel4Layout.createSequentialGroup()
+                            .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(instituicaoProfessor, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
+                                    .addComponent(cpfProfessor, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel11, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(nomeProfessor, javax.swing.GroupLayout.Alignment.LEADING))
+                                .addComponent(jLabel17))
+                            .addGap(50, 50, 50)
+                            .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addGroup(jPanel4Layout.createSequentialGroup()
-                                    .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                            .addComponent(instituicaoProfessor, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
-                                            .addComponent(cpfProfessor, javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabel11, javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(nomeProfessor, javax.swing.GroupLayout.Alignment.LEADING))
-                                        .addComponent(jLabel17))
+                                    .addComponent(cursoProfessor, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(anoConclusaoProfessor, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(jPanel4Layout.createSequentialGroup()
+                                    .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addComponent(jLabel19)
+                                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(idadeProfessor)
+                                            .addComponent(jLabel12)
+                                            .addComponent(jLabel15)
+                                            .addComponent(sexoProfessor, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                     .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addGroup(jPanel4Layout.createSequentialGroup()
-                                            .addGap(54, 54, 54)
-                                            .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                                .addComponent(idadeProfessor)
-                                                .addComponent(jLabel12)
-                                                .addComponent(jLabel15)
-                                                .addComponent(sexoProfessor, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
                                             .addGap(79, 79, 79)
                                             .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                                 .addComponent(jLabel13)
                                                 .addComponent(rgProfessor, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                         .addGroup(jPanel4Layout.createSequentialGroup()
-                                            .addGap(182, 182, 182)
-                                            .addComponent(jLabel18))
-                                        .addGroup(jPanel4Layout.createSequentialGroup()
-                                            .addGap(182, 182, 182)
-                                            .addComponent(anoConclusaoProfessor, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE))))))
-                        .addGap(233, 233, 233))))
+                                            .addGap(78, 78, 78)
+                                            .addComponent(jLabel18))))))))
+                .addGap(101, 101, 101)
+                .addComponent(criarProfessor, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(23, 23, 23))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -464,16 +557,18 @@ public class AlunoForm extends javax.swing.JFrame {
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addComponent(jLabel16)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(nascimentoProfessor, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(matriculaProfessor, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel17)
-                    .addComponent(jLabel18))
+                    .addComponent(jLabel18)
+                    .addComponent(jLabel19))
                 .addGap(16, 16, 16)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(instituicaoProfessor, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(anoConclusaoProfessor, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 103, Short.MAX_VALUE)
+                    .addComponent(anoConclusaoProfessor, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cursoProfessor, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 157, Short.MAX_VALUE)
                 .addComponent(criarProfessor, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -490,6 +585,272 @@ public class AlunoForm extends javax.swing.JFrame {
         );
 
         jTabbedPane1.addTab("Cadastrar professor", jPanel3);
+
+        jPanel6.setBackground(new java.awt.Color(255, 255, 255));
+
+        professorTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane2.setViewportView(professorTable);
+
+        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
+        jPanel6.setLayout(jPanel6Layout);
+        jPanel6Layout.setHorizontalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addGap(30, 30, 30)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 736, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(40, Short.MAX_VALUE))
+        );
+        jPanel6Layout.setVerticalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addGap(100, 100, 100)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(257, Short.MAX_VALUE))
+        );
+
+        jTabbedPane1.addTab("Ver professores", jPanel6);
+
+        jPanel9.setBackground(new java.awt.Color(255, 255, 255));
+
+        jLabel20.setText("Titulo");
+
+        jLabel21.setText("Descrição");
+
+        jLabel22.setText("Valor");
+
+        jLabel23.setText("Professor (O id do professor)");
+
+        professorCurso.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                professorCursoActionPerformed(evt);
+            }
+        });
+
+        salvarCurso.setText("Salvar");
+        salvarCurso.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                salvarCursoActionPerformed(evt);
+            }
+        });
+
+        valorCurso.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                valorCursoActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
+        jPanel9.setLayout(jPanel9Layout);
+        jPanel9Layout.setHorizontalGroup(
+            jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel9Layout.createSequentialGroup()
+                .addGap(100, 100, 100)
+                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel20, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tituloCurso, javax.swing.GroupLayout.DEFAULT_SIZE, 163, Short.MAX_VALUE)
+                    .addComponent(jLabel22, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(valorCurso))
+                .addGap(144, 144, 144)
+                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel21, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(descricaoCurso, javax.swing.GroupLayout.DEFAULT_SIZE, 163, Short.MAX_VALUE)
+                    .addComponent(professorCurso)
+                    .addComponent(jLabel23, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(236, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel9Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(salvarCurso, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(31, 31, 31))
+        );
+        jPanel9Layout.setVerticalGroup(
+            jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel9Layout.createSequentialGroup()
+                .addGap(73, 73, 73)
+                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel20)
+                    .addComponent(jLabel21))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(tituloCurso, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(descricaoCurso, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(57, 57, 57)
+                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel22)
+                    .addComponent(jLabel23, javax.swing.GroupLayout.PREFERRED_SIZE, 13, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(valorCurso, javax.swing.GroupLayout.DEFAULT_SIZE, 29, Short.MAX_VALUE)
+                    .addComponent(professorCurso))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 148, Short.MAX_VALUE)
+                .addComponent(salvarCurso, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(22, 22, 22))
+        );
+
+        jTabbedPane1.addTab("Cadastrar curso", jPanel9);
+
+        jPanel10.setBackground(new java.awt.Color(255, 255, 255));
+
+        cursoTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane3.setViewportView(cursoTable);
+
+        javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
+        jPanel10.setLayout(jPanel10Layout);
+        jPanel10Layout.setHorizontalGroup(
+            jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel10Layout.createSequentialGroup()
+                .addContainerGap(64, Short.MAX_VALUE)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 694, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(48, 48, 48))
+        );
+        jPanel10Layout.setVerticalGroup(
+            jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel10Layout.createSequentialGroup()
+                .addGap(58, 58, 58)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(300, Short.MAX_VALUE))
+        );
+
+        jTabbedPane1.addTab("Ver cursos", jPanel10);
+
+        jPanel11.setBackground(new java.awt.Color(255, 255, 255));
+
+        jLabel24.setText("AlunoId");
+
+        alunoIdMatricula.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                alunoIdMatriculaActionPerformed(evt);
+            }
+        });
+
+        jLabel25.setText("Mes matrícula");
+
+        mesMatricula.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mesMatriculaActionPerformed(evt);
+            }
+        });
+
+        jLabel26.setText("Ano matricula");
+
+        jLabel27.setText("CursoId");
+
+        cursoIdMatricula.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cursoIdMatriculaActionPerformed(evt);
+            }
+        });
+
+        salvarMatricula.setText("Salvar");
+        salvarMatricula.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                salvarMatriculaActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel11Layout = new javax.swing.GroupLayout(jPanel11);
+        jPanel11.setLayout(jPanel11Layout);
+        jPanel11Layout.setHorizontalGroup(
+            jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel11Layout.createSequentialGroup()
+                .addGap(103, 103, 103)
+                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel27, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel11Layout.createSequentialGroup()
+                        .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(cursoIdMatricula, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 111, Short.MAX_VALUE)
+                            .addComponent(jLabel24, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(alunoIdMatricula, javax.swing.GroupLayout.Alignment.LEADING))
+                        .addGap(119, 119, 119)
+                        .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel25, javax.swing.GroupLayout.DEFAULT_SIZE, 69, Short.MAX_VALUE)
+                            .addComponent(mesMatricula))
+                        .addGap(119, 119, 119)
+                        .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel26, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(anoMatricula, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(210, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel11Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(salvarMatricula, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(40, 40, 40))
+        );
+        jPanel11Layout.setVerticalGroup(
+            jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel11Layout.createSequentialGroup()
+                .addGap(48, 48, 48)
+                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel24)
+                    .addComponent(jLabel25)
+                    .addComponent(jLabel26))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(alunoIdMatricula, javax.swing.GroupLayout.DEFAULT_SIZE, 29, Short.MAX_VALUE)
+                    .addComponent(mesMatricula)
+                    .addComponent(anoMatricula))
+                .addGap(37, 37, 37)
+                .addComponent(jLabel27)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(cursoIdMatricula, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 193, Short.MAX_VALUE)
+                .addComponent(salvarMatricula, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(31, 31, 31))
+        );
+
+        jTabbedPane1.addTab("Matricular", jPanel11);
+
+        jPanel12.setBackground(new java.awt.Color(255, 255, 255));
+
+        matriculaTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane4.setViewportView(matriculaTable);
+
+        javax.swing.GroupLayout jPanel12Layout = new javax.swing.GroupLayout(jPanel12);
+        jPanel12.setLayout(jPanel12Layout);
+        jPanel12Layout.setHorizontalGroup(
+            jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel12Layout.createSequentialGroup()
+                .addGap(173, 173, 173)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(181, Short.MAX_VALUE))
+        );
+        jPanel12Layout.setVerticalGroup(
+            jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel12Layout.createSequentialGroup()
+                .addGap(45, 45, 45)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(313, Short.MAX_VALUE))
+        );
+
+        jTabbedPane1.addTab("Ver matrículas", jPanel12);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -511,11 +872,20 @@ public class AlunoForm extends javax.swing.JFrame {
         jTextField3.setText("");
         jTextField4.setText("");
         jTextField5.setText("");
-        alunoCodigoMatricula.setText("");
-        alunoMesMatricula.setText("");
-        alunoAnoMatricula.setText("");
         alunoInteresses.setText("");
         alunoNascimento.setText("");
+    }
+    
+    private void clearProfessorForm() {
+        cursoProfessor.setText("");
+        instituicaoProfessor.setText("");
+        anoConclusaoProfessor.setText("");
+        nomeProfessor.setText("");
+        idadeProfessor.setText("");
+        rgProfessor.setText("");
+        sexoProfessor.setText("");
+        matriculaProfessor.setText("");
+        cpfProfessor.setText("");
     }
     
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
@@ -540,19 +910,24 @@ public class AlunoForm extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         Aluno aluno = new Aluno();
-        long idAluno = 0;
-        long codigoMatricula = Long.parseLong(alunoCodigoMatricula.getText());
-        byte mesMatricula = Byte.parseByte(alunoMesMatricula.getText());
-        short anoMatricula = Short.parseShort(alunoAnoMatricula.getText());
-        Matricula matricula = new Matricula(codigoMatricula, mesMatricula, anoMatricula);
+        long idAluno = 1;
+       
+        var size = this.alunos.size();
+        
+        if (size != 0) {
+            Aluno lastIndex =  this.alunos.get(size - 1);
 
-        aluno.setId(++idAluno);
+            if (lastIndex != null) {
+                idAluno = lastIndex.getId() + 1;
+            }
+        }
+       
+        aluno.setId(idAluno);
         aluno.setNome(jTextField1.getText());
         aluno.setIdade(jTextField2.getText());
         aluno.setRg(jTextField3.getText());
         aluno.setCpf(jTextField4.getText());
         aluno.setSexo(jTextField5.getText());
-        aluno.setMatricula(matricula);
         
         this.alunos.add(aluno);
         
@@ -568,10 +943,7 @@ public class AlunoForm extends javax.swing.JFrame {
                 alunos.get(i).getNome(),
                 alunos.get(i).getRg(),
                 alunos.get(i).getCpf(),
-                alunos.get(i).getMatricula().getCodigo(),
-                alunos.get(i).getInteresses(),
-                alunos.get(i).getMatricula().getMesMatricula(),
-                alunos.get(i).getMatricula().getAnoMatricula()
+                alunos.get(i).getInteresses()
             });
         }      
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -588,12 +960,54 @@ public class AlunoForm extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_instituicaoProfessorActionPerformed
 
-    private void nascimentoProfessorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nascimentoProfessorActionPerformed
+    private void matriculaProfessorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_matriculaProfessorActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_nascimentoProfessorActionPerformed
+    }//GEN-LAST:event_matriculaProfessorActionPerformed
 
     private void criarProfessorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_criarProfessorActionPerformed
-        // TODO add your handling code here:
+        Professor professor = new Professor();
+        Formacao formacao = new Formacao(cursoProfessor.getText(), instituicaoProfessor.getText(), anoConclusaoProfessor.getText());
+        long id = 1;
+        
+        var size = this.professores.size();
+        
+        if (size != 0) {
+            Professor lastIndex =  this.professores.get(size - 1);
+
+            if (lastIndex != null) {
+                id = lastIndex.getId() + 1;
+            }
+        }
+       
+        
+        professor.setId(id);
+        professor.setNome(nomeProfessor.getText());
+        professor.setIdade(idadeProfessor.getText());
+        professor.setRg(rgProfessor.getText());
+        professor.setCpf(cpfProfessor.getText());
+        professor.setSexo(sexoProfessor.getText());
+        professor.setMatricula(matriculaProfessor.getText());
+        professor.setFormacao(formacao);
+        
+        this.professores.add(professor);
+        
+        this.clearProfessorForm();
+        JOptionPane.showMessageDialog(this, "Professor criado com sucesso!");
+        
+        for (int i = 0; i < this.professores.size(); i++) {
+                       
+            professorModel.addRow(new Object[] {
+                professores.get(i).getId(),
+                professores.get(i).getNome(),
+                professores.get(i).getIdade(),
+                professores.get(i).getRg(),
+                professores.get(i).getCpf(),
+                professores.get(i).getMatricula(),
+                professores.get(i).getFormacao().getNome(),
+                professores.get(i).getFormacao().getInstituicao(),
+                professores.get(i).getFormacao().getAnoConslusao()
+            });
+        }
     }//GEN-LAST:event_criarProfessorActionPerformed
 
     private void sexoProfessorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sexoProfessorActionPerformed
@@ -615,6 +1029,107 @@ public class AlunoForm extends javax.swing.JFrame {
     private void nomeProfessorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nomeProfessorActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_nomeProfessorActionPerformed
+
+    private void cursoProfessorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cursoProfessorActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cursoProfessorActionPerformed
+
+    private void professorCursoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_professorCursoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_professorCursoActionPerformed
+
+    private void cleanCursoForm() {
+        tituloCurso.setText("");
+        valorCurso.setText("");
+        descricaoCurso.setText("");
+        professorCurso.setText("");
+    }
+    
+    private void salvarCursoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salvarCursoActionPerformed
+        Curso curso = new Curso();
+        long id = 1;
+        
+        
+        var size = this.cursos.size();
+        
+        if (size != 0) {
+            Curso lastIndex =  this.cursos.get(size - 1);
+
+            if (lastIndex != null) {
+                id = lastIndex.getIdCurso()+ 1;
+            }
+        }
+        
+        curso.setIdCurso(id);
+        curso.setTitulo(tituloCurso.getText());
+        curso.setValor((Double.parseDouble(valorCurso.getText())));
+        curso.setDescricao(descricaoCurso.getText());
+        
+        Professor prof = this.professores.stream().filter(a -> a.getId() == Long.parseLong(professorCurso.getText())).collect(Collectors.toList()).get(0);
+        
+        curso.setProfessor(prof);
+        this.cleanCursoForm();
+        
+        cursos.add(curso);      
+        
+        JOptionPane.showMessageDialog(this, "Professor criado com sucesso!");
+        for (int i = 0; i < cursos.size(); i++) {
+            
+            cursoModel.addRow(new Object[] {
+                cursos.get(i).getIdCurso(),
+                cursos.get(i).getTitulo(),
+                cursos.get(i).getDescricao(),
+                cursos.get(i).getProfessor().getNome()
+            });
+        }
+    }//GEN-LAST:event_salvarCursoActionPerformed
+
+    private void valorCursoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_valorCursoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_valorCursoActionPerformed
+
+    private void alunoIdMatriculaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_alunoIdMatriculaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_alunoIdMatriculaActionPerformed
+
+    private void mesMatriculaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mesMatriculaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_mesMatriculaActionPerformed
+
+    private void cursoIdMatriculaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cursoIdMatriculaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cursoIdMatriculaActionPerformed
+
+    private void clearMatriculaForm() {
+        alunoIdMatricula.setText("");
+        cursoIdMatricula.setText("");
+        mesMatricula.setText("");
+        anoMatricula.setText("");
+    }
+    
+    private void salvarMatriculaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salvarMatriculaActionPerformed
+      
+        Aluno aluno = this.alunos.stream().filter(a -> a.getId() == Long.parseLong(alunoIdMatricula.getText())).collect(Collectors.toList()).get(0);
+        Curso curso = this.cursos.stream().filter(w -> w.getIdCurso() == Long.parseLong(cursoIdMatricula.getText())).collect(Collectors.toList()).get(0);
+        
+        long codigo = 0;
+        
+        Matricula matricula = new Matricula(++codigo, Byte.parseByte(mesMatricula.getText()), Short.parseShort(anoMatricula.getText()), aluno, curso);
+        
+        matriculas.add(matricula);
+        this.clearMatriculaForm();
+        JOptionPane.showMessageDialog(this, "Matricula criada com sucesso!");
+        
+        for (int i = 0; i < matriculas.size(); i++) {
+            matriculaModel.addRow(new Object[] {
+                matriculas.get(i).getCodigo(),
+                matriculas.get(i).getMesMatricula(),
+                matriculas.get(i).getAnoMatricula(),
+                matriculas.get(i).getAluno().getNome(),
+                matriculas.get(i).getCurso().getTitulo()
+            });
+        }
+    }//GEN-LAST:event_salvarMatriculaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -652,20 +1167,23 @@ public class AlunoForm extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField alunoAnoMatricula;
-    private javax.swing.JTextField alunoCodigoMatricula;
+    private javax.swing.JTextField alunoIdMatricula;
     private javax.swing.JTextField alunoInteresses;
-    private javax.swing.JTextField alunoMesMatricula;
     private javax.swing.JTextField alunoNascimento;
     private javax.swing.JTable alunoTable;
     private javax.swing.JTextField anoConclusaoProfessor;
+    private javax.swing.JTextField anoMatricula;
     private javax.swing.JTextField cpfProfessor;
     private javax.swing.JButton criarProfessor;
+    private javax.swing.JTextField cursoIdMatricula;
+    private javax.swing.JTextField cursoProfessor;
+    private javax.swing.JTable cursoTable;
+    private javax.swing.JTextField descricaoCurso;
     private javax.swing.JTextField idadeProfessor;
     private javax.swing.JTextField instituicaoProfessor;
     private javax.swing.JButton jButton1;
+    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
@@ -674,29 +1192,56 @@ public class AlunoForm extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel20;
+    private javax.swing.JLabel jLabel21;
+    private javax.swing.JLabel jLabel22;
+    private javax.swing.JLabel jLabel23;
+    private javax.swing.JLabel jLabel24;
+    private javax.swing.JLabel jLabel25;
+    private javax.swing.JLabel jLabel26;
+    private javax.swing.JLabel jLabel27;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel10;
+    private javax.swing.JPanel jPanel11;
+    private javax.swing.JPanel jPanel12;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
+    private javax.swing.JPanel jPanel6;
+    private javax.swing.JPanel jPanel7;
+    private javax.swing.JPanel jPanel8;
+    private javax.swing.JPanel jPanel9;
     private javax.swing.JPasswordField jPasswordField1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
     private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField nascimentoProfessor;
+    private javax.swing.JTextField jTextField6;
+    private javax.swing.JTextField matriculaProfessor;
+    private javax.swing.JTable matriculaTable;
+    private javax.swing.JTextField mesMatricula;
     private javax.swing.JTextField nomeProfessor;
+    private javax.swing.JTextField professorCurso;
+    private javax.swing.JTable professorTable;
     private javax.swing.JTextField rgProfessor;
+    private javax.swing.JButton salvarCurso;
+    private javax.swing.JButton salvarMatricula;
     private javax.swing.JTextField sexoProfessor;
+    private javax.swing.JTextField tituloCurso;
+    private javax.swing.JTextField valorCurso;
     // End of variables declaration//GEN-END:variables
 }
